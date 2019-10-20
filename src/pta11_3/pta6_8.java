@@ -38,6 +38,7 @@ public class pta6_8 {
 }
 
 
+//Array要实现Comparable接口（否则报错）,重写接口中的比较函数，判等函数
 class Student implements Comparable<Student>
 {
 	private int no;
@@ -54,6 +55,8 @@ class Student implements Comparable<Student>
 	}
 	
 	@Override
+	//该函数用来将数组对象中的各种基本数据类型的属性进行比较，返回int
+	//是排序中所需要的比较函数（注意需要确定哪一个属性是第一判断条件，然后第二第三）
 	public int compareTo(Student o)
 	{
 		for(int i=0;i<this.name.length()&&i<o.name.length();i++)
@@ -61,6 +64,8 @@ class Student implements Comparable<Student>
 			if(this.name.charAt(i)<o.name.charAt(i)) return -1;
 			else if(this.name.charAt(i)>o.name.charAt(i)) return 1;
 		}
+		//当Student中的姓名相等时比较他们的学号，也就是默认了该函数
+		//主要比较的是姓名，第二比较学号
 		return Integer.compare(this.no, o.no);		
 	}
 	
@@ -70,6 +75,10 @@ class Student implements Comparable<Student>
 	}
 	
 	@Override
+	//重写该函数是因为需要对数组进行去重
+	//重写的原因是：我们需要在对象中的某一个特定属性相等时进行去重
+	//所以重写后的函数，我们在判断时只要某一个特定对象是否相等即可
+	//例如本次只需要判断学号是否相等
 	public boolean equals(Object obj)
 	{
 		if(this == obj) return true;
@@ -81,6 +90,7 @@ class Student implements Comparable<Student>
 	}
 	
 	
+	//具体是什么目前未知，反正重写equals也需要重写该函数
 	 @Override
 	    public int hashCode() {
 	        // return super.hashCode();
