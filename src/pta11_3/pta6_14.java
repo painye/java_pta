@@ -131,7 +131,8 @@ abstract class Person  implements Comparable
 	public int compareTo(Object o) {
 		// TODO Auto-generated method stub
 		Student stu=(Student) o;
-		return Integer.compare(this.sno, stu.sno);
+		//比较特定的属性，注意get得到私有的方法
+		return stu.getSno()-this.getSno();
 	}
 
 
@@ -140,9 +141,9 @@ abstract class Person  implements Comparable
  
  class Teacher extends Person
  {
+	 private int age;
 	 private String name;
 	 private String gender;
-	 private int age;
 	 private int tno;
 	 private String subject; 
 	 public Teacher(int t, String name ,String gender, int age, String s) {
@@ -157,13 +158,26 @@ abstract class Person  implements Comparable
 	public int compareTo(Object o) {
 		// TODO Auto-generated method stub
 		Teacher t=(Teacher) o;
-		return Integer.compare(this.age, t.age);
+		//比较特定的属性，注意get得到私有的方法
+		return this.getAge() - t.getAge();
 	}
 }
  
  
  class MyTool{ 
 	 public static void separateStu_T(List persons,List teachers,List students){
-		 
-	 }   
+			 int n=persons.size();
+			 //遍历链表中的每个节点
+			 for(int i=0;i<n;i++)
+			 {
+				 //判断该节点是否是Student类
+				 if(persons.get(i) instanceof Student) {
+					 students.add(persons.get(i));
+				 }
+				 //判断该节点是否是Teacher类
+				 if(persons.get(i) instanceof Teacher) {
+					 teachers.add(persons.get(i));
+				 }
+			 }  
 	 }
+ }
