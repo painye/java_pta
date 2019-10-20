@@ -11,7 +11,7 @@ public class pta6_11 {
 			System.out.println(isOdd(data));
 	}
 	
-	//---------------------------------------------------------
+	//ДњТы---------------------------------------------------------
 
 	public static boolean isOdd(int data)
 	{
