@@ -1,16 +1,16 @@
-package pta11_3;
+
 
 import java.util.Arrays;
 import java.util.Scanner;
 
-public class pta7_38 {
+public class Main {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		Scanner in=new Scanner(System.in);
 		int n=in.nextInt();
 		in.nextLine();
-		Shape38[] s=new Shape38[n];
+		Shape[] s=new Shape[n];
 		for(int i=0;i<n;i++)
 		{
 			String shape=in.next();
@@ -18,16 +18,16 @@ public class pta7_38 {
 			{
 				int w=in.nextInt();
 				int l=in.nextInt();
-				Rectangle38 r=new Rectangle38(w, l);
+				Rectangle r=new Rectangle(w, l);
 				s[i]=r;
 			}else if(shape.equals("cir")) {
 				int r=in.nextInt();
-				Circle38 c=new Circle38(r);
+				Circle c=new Circle(r);
 				s[i]=c;
 			}
 		}
+        System.out.println(sumAllPerimeter(s));
 		System.out.println(sumAllArea(s));
-		System.out.println(sumAllPerimeter(s));
 		System.out.println(Arrays.toString(s));
 		for(int i=0;i<n;i++)
 		{
@@ -36,7 +36,7 @@ public class pta7_38 {
 		
 	}
 	
-	public static double sumAllArea(Shape38[] s)
+	public static double sumAllArea(Shape[] s)
 	{
 		double sum=0;
 		for(int i=0;i<s.length;i++)
@@ -46,7 +46,7 @@ public class pta7_38 {
 		return sum;
 	}
 	
-	public static double sumAllPerimeter(Shape38[] s)
+	public static double sumAllPerimeter(Shape[] s)
 	{
 		double sum=0;
 		for(int i=0;i<s.length;i++)
@@ -57,19 +57,18 @@ public class pta7_38 {
 	}
 
 }
-
-abstract class Shape38
+abstract class Shape
 {
 	static double PI=3.14;
 	public abstract double getPerimeter();
 	public abstract double getArea();
 }
 
-class Rectangle38 extends Shape38
+class Rectangle extends Shape
 {
 	int width,length;
-	
-	Rectangle38(int w, int l)
+
+	Rectangle(int w, int l)
 	{
 		width=w;
 		length=l;
@@ -97,12 +96,12 @@ class Rectangle38 extends Shape38
 }
 
 
-class Circle38 extends Shape38
+class Circle extends Shape
 {
 	
 	int radius;
 	
-	Circle38(int r)
+	Circle(int r)
 	{
 		radius=r;
 	}
